@@ -1,0 +1,27 @@
+{% load thumbnail i18n %}
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="fa fa-newspaper-o"></i> {% trans "News" %}</div>
+  <div class="panel-body">
+{% for entry in entries %}
+<div class="entry media">
+  	{% if entry.image %}
+	  <div class="media-left">
+		    <a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">
+		      <img class="media-object img-thumbnail" src="{% thumbnail entry.image 50x50 crop %}" alt="{{ entry.title }}">
+		    </a>
+	  </div>
+    {% endif %}
+  <div class="media-body">
+  	<a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">
+    	<h3 class="media-heading">{{ entry.title }} <span class="badge">{{ entry.creation_date|date:"j M H:i" }}</span></h3>
+    </a>
+    {{ entry.content|truncatechars:30 }}
+  </div>
+</div>
+{% empty %}
+<div class="entry media">
+	{% trans "No entries yet." %}
+</div>
+{% endfor %}
+ </div>
+</div>

@@ -1,0 +1,19 @@
+{% load thumbnail i18n %}
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="fa fa-bar-chart"></i> {% trans "Upcoming Matches" %}</div>
+  <div class="panel-body">
+
+{% for match in lastMatches %}
+  <div class="match">
+    <span class="badge">{{ match.datetime }}</span>
+    <a href="#">
+      <img class="img-circle" src="{% thumbnail match.clanA.logo 150x150 crop %}" alt="{{ match.clanA.name }}">
+    </a>
+    <span class="versus"> vs </span>
+    <a href="#">
+      <img class="img-circle" src="{% thumbnail match.clanB.logo 150x150 crop %}" alt="{{ match.clanB.name }}">
+    </a>
+    </div>
+{% endfor %}
+</div>
+</div>

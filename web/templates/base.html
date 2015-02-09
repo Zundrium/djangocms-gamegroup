@@ -1,0 +1,108 @@
+{% load cms_tags staticfiles sekizai_tags menu_tags i18n %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}This is my new project home page{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% render_block "css" %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/slate/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body style="padding-top:60px">
+    {% cms_toolbar %}
+        <div class="container">
+          <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">GAMEGROUP</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                {% show_menu 0 1 100 100 "menu.html" %}
+
+              </ul>
+                  {% if user.is_authenticated %}
+                  <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <i class="fa fa-user"></i> {{ user.username }} <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a href="/accounts/profile">
+                          {% trans "Profile" %}
+                        </a>
+                        </li>
+                        <li>
+                        <a href="/accounts/logout">
+                          {% trans "Log out" %}
+                        </a>
+                        </li>
+                        </ul>
+                  </li>
+                  </ul>
+                  {% else %}
+                  <div class="navbar-right" style="margin-right:0px;">
+                    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#logIn">{% trans "Log in" %}</button> 
+                    <span style="margin:0 10px;">{% trans "or" %}</span>
+                    <a type="button" class="btn btn-primary navbar-btn" href="/accounts/register/">{% trans "Register" %}</a>
+                    </div>
+                  {% endif %}
+            </div>
+          </div>
+        {% block content %}
+        {% endblock content %}
+        </div>
+
+        <div class="modal fade" id="logIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Log in</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/en/accounts/login/">
+        {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter password">
+          </div>
+          <p>
+          <a href="/en/accounts/password/reset">{% trans "Reset password" %}</a>
+</p><p>
+          <button type="submit" class="btn btn-default">{% trans "Log in" %}</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <footer>
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-12">
+        <div class="well" style="overflow:hidden;">
+          <div class="col-md-4">{% static_placeholder "footer column 1" %}</div>
+          <div class="col-md-4">{% static_placeholder "footer column 2" %}</div>
+          <div class="col-md-4">{% static_placeholder "footer column 3" %}</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    {% render_block "js" %}
+  </body>
+</html>
+

@@ -1,0 +1,15 @@
+{% if not user.is_authencated %}
+
+<div class="well">
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Login</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">...</div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+</div>
+</div>
+</div>
+{% endif %}

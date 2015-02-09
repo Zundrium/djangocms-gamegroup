@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-8">
+  {% placeholder "content" %}
+  </div>
+  <div class="col-md-4">
+  {% static_placeholder "sidebar" %}
+  </div>
+</div>
+{% endblock content %}

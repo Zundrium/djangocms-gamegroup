@@ -1,0 +1,7 @@
+{% load thumbnail i18n %}
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="fa fa-twitch"></i> {% trans "Twitch Chat" %}</div>
+  <div class="panel-body">
+<iframe src="http://www.twitch.tv/{{ object.name }}/chat?popout=true&darkmode=true" frameborder="0" scrolling="no" height="500" width="100%"></iframe>
+</div>
+</div>
