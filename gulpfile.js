@@ -52,7 +52,7 @@ gulp.task('analyseDirs', function() {
 });
  
 function watchCoffee() {
-    watch({glob: paths.coffeescriptDirs, base: './', emitOnGlob: false}, function(files) {
+    watch(paths.coffeescriptDirs, {base: './', emitOnGlob: false}, function(files) {
         return files
             .pipe(notify("Syncing <%= file.relative %>!"))
             .pipe(plumber({errorHandler: notify.onError("COFFEE ERROR: <%= error.message %>")}))
@@ -67,7 +67,7 @@ function watchCoffee() {
 }
  
 function watchSass() {
-    watch({glob: paths.sassDirs, base: './', emitOnGlob: false}, function(files) {
+    watch(paths.sassDirs, {base: './', emitOnGlob: false}, function(files) {
         return files
             .pipe(notify("Syncing <%= file.relative %>!"))
             .pipe(plumber({errorHandler: notify.onError("SASS ERROR: <%= error.message %>")}))
@@ -83,7 +83,7 @@ function watchSass() {
 }
  
 function watchHaml() {
-    watch({glob: paths.hamlDirs, base: './', emitOnGlob: false}, function(files) {
+    watch(paths.hamlDirs, {base: './', emitOnGlob: false}, function(files) {
         return files
             .pipe(notify("Syncing <%= file.relative %>!"))
             .pipe(plumber({errorHandler: notify.onError("HAML ERROR: <%= error.message %>")}))
@@ -99,7 +99,7 @@ function watchHaml() {
 }
  
 function watchPython() {
-    watch({glob: '**/*.py', emitOnGlob: false}, function(files) {
+    watch('**/*.py', {emitOnGlob: false}, function(files) {
         setTimeout(function(){
             return files
                 .pipe(notify("Syncing <%= file.relative %>!"))

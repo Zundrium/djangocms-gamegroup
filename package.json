@@ -1,0 +1,15 @@
+{
+    "dependencies": {
+        "gulp": "*",
+        "gulp-coffee": "*",
+		"gulp-sass": "*",
+		"gulp-minify-css": "*",
+		"gulp-haml": "*",
+		"gulp-minify-html": "*",
+		"gulp-livereload": "*",
+		"gulp-notify": "*",
+		"gulp-watch": "*",
+		"gulp-rename": "*",
+		"gulp-plumber": "*"
+    }
+}
